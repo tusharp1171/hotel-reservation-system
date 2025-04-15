@@ -1,0 +1,152 @@
+<div class="container p-4">
+  <div class="card shadow-lg p-4 bg-white rounded booking-card" style="max-height: 80vh; overflow-y: auto;">
+    <!-- Hotel Name & Location -->
+    <h2 class="text-center text-primary fw-bold">{{ data.hotel.name }} Details</h2>
+    <p class="text-muted text-center">
+      <i class="bi bi-geo-alt-fill text-danger"></i> {{ data.hotel.location }}
+    </p>
+
+    <!-- Booking Form -->
+    <div class="row g-3">
+      <!-- Room Type Selection -->
+      <div class="col-12 col-md-6">
+        <label for="roomType" class="form-label fw-bold">
+          <i class="bi bi-door-open"></i> Select Room Type
+        </label>
+        <select id="roomType" class="form-select" [(ngModel)]="selectedRoomType" (change)="onRoomTypeChange()">
+          <option value="" disabled selected>Select a room type</option>
+          <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+      
+      <!-- Bed Type Selection -->
+      <div class="col-12 col-md-6" *ngIf="selectedRoomType">
+        <label for="bedType" class="form-label fw-bold">
+          <i class="bi bi-bed"></i> Select Bed Type
+        </label>
+        <select id="bedType" class="form-select" [(ngModel)]="selectedBedType" (change)="onBedTypeChange()">
+          <option value="" disabled selected>Select a bed type</option>
+          <option *ngFor="let bed of bedTypes" [value]="bed">{{ bed }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Room Numbers Selection -->
+    <div class="mt-3" *ngIf="roomNumbers.length > 0">
+      <label class="form-label fw-bold">
+        <i class="bi bi-key"></i> Select Room Numbers
+      </label>
+      <div class="d-flex flex-wrap gap-2">
+        <div *ngFor="let number of roomNumbers" class="form-check">
+          <input 
+          type="checkbox" 
+          class="form-check-input" 
+          [value]="number" 
+          [checked]="selectedRoomNumbers.includes(number)" 
+          (change)="toggleRoomSelection(number, $event)">
+          <label class="form-check-label">{{ number }}</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guest Information -->
+    <div class="mt-3">
+      <h5 class="text-secondary fw-bold">
+        <i class="bi bi-person-vcard"></i> Guest Information
+      </h5>
+      <div *ngFor="let guest of guests; let i = index" class="border rounded p-3 mb-2 bg-light">
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">Full Name</label>
+            <input type="text" class="form-control" [(ngModel)]="guest.fullName" required>
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">Date of Birth</label>
+            <input type="date" class="form-control" [(ngModel)]="guest.dob" required>
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">Gender</label>
+            <select class="form-select" [(ngModel)]="guest.gender" required>
+              <option value="" disabled selected>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold">ID Proof Type</label>
+              <select class="form-select" [(ngModel)]="guest.idProofType" required>
+                <option value="" disabled selected>Select ID Proof</option>
+                <option *ngFor="let proof of proofTypes" [value]="proof">{{ proof }}</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold">ID Proof Number</label>
+              <input type="text" class="form-control" [(ngModel)]="guest.idProofNumber" required>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold">Nationality</label>
+              <input type="text" class="form-control" [(ngModel)]="guest.nationality" required>
+            </div>
+          </div>
+        
+          <div class="row g-3 mt-2">
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold">Contact Number</label>
+              <input type="tel" class="form-control" [(ngModel)]="guest.contactNumber" required>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold">Email</label>
+              <input type="email" class="form-control" [(ngModel)]="guest.email">
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-bold">Address</label>
+              <input type="text" class="form-control" [(ngModel)]="guest.address">
+            </div>
+        </div>
+      </div>
+      <button class="btn btn-danger btn-sm mt-2" (click)="removeGuest(i)" *ngIf="guests.length > 1">
+        <i class="bi bi-trash"></i> Remove Guest
+      </button>
+    </div>
+      <button class="btn btn-secondary btn-sm mt-2" (click)="addGuest()">
+        <i class="bi bi-plus-circle"></i> Add Guest
+      </button>
+    </div>
+
+    <!-- Check-in & Check-out Dates -->
+    <div class="row g-3 mt-3">
+      <div class="col-12 col-md-6">
+        <label for="checkInDate" class="form-label fw-bold">
+          <i class="bi bi-calendar-check"></i> Check-in Date
+        </label>
+        <input type="date" id="checkInDate" class="form-control" [(ngModel)]="checkIn" required>
+      </div>
+      <div class="col-12 col-md-6">
+        <label for="checkOutDate" class="form-label fw-bold">
+          <i class="bi bi-calendar-x"></i> Check-out Date
+        </label>
+        <input type="date" id="checkOutDate" class="form-control" [(ngModel)]="checkOut" required>
+      </div>
+    </div>
+
+    <!-- Total Price -->
+    <div *ngIf="selectedRooms.length > 0" class="room-details p-3 mt-3 rounded bg-light text-center">
+      <h5 class="text-success">
+        <i class="bi bi-cash-stack"></i> Total Price: ${{ getTotalPrice() }}
+      </h5>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="d-flex flex-column flex-md-row justify-content-between mt-4">
+    <button class="btn btn-danger px-4 mb-2 mb-md-0" (click)="closeDialog()">
+      <i class="bi bi-x-circle"></i> Close
+    </button>
+    <button class="btn btn-primary px-4" [disabled]="isBookingDisabled" (click)="bookRoom()">
+      <i class="bi bi-calendar-check"></i> Book Now
+    </button>
+  </div>
+</div>

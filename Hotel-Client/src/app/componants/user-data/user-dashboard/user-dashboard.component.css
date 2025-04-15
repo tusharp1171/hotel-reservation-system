@@ -1,0 +1,121 @@
+/* Navigation Bar */
+.navbar {
+  background-color: #fff; /* White background */
+  color: #333; /* Black text */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  position: fixed;
+  left: 0;  /* Default position for desktop */
+  top: 0;
+  bottom: 0;
+  background-color: #fff; /* White background */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  border-right: 1px solid #ddd; /* Subtle border */
+}
+
+/* Sidebar for Mobile (Move to Right) */
+@media (max-width: 767px) {
+  .sidebar {
+    left: auto;
+    right: 0; /* Move to right */
+    transform: translateX(100%); /* Hide on right side */
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+}
+
+/* Close button inside the sidebar */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #333; /* Dark text for better visibility */
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  color: #555;
+}
+
+/* Stylish Menu Toggle Button */
+.menu-toggle-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px; /* Default on left */
+  background: #fff; /* White background */
+  color: #333; /* Dark text */
+  border: 1px solid #ddd; /* Subtle border */
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  transition: all 0.3s ease-in-out;
+  z-index: 1100;
+}
+
+/* Move the Menu Button to Right in Mobile */
+@media (max-width: 767px) {
+  .menu-toggle-btn {
+    left: auto;
+    right: 15px; /* Move to right */
+  }
+}
+
+/* Hover and Click Effects */
+.menu-toggle-btn:hover {
+  background: #f8f9fa;
+  transform: scale(1.05);
+}
+
+.menu-toggle-btn:active {
+  background: #e9ecef;
+  transform: scale(0.95);
+}
+
+/* Styling for Navigation Links */
+.nav-link {
+  color: #333; /* Black text */
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+/* Main Content */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 250px; /* Sidebar width */
+  transition: margin-left 0.3s;
+}
+
+@media (max-width: 767px) {
+  .content {
+    margin-left: 0;
+  }
+}

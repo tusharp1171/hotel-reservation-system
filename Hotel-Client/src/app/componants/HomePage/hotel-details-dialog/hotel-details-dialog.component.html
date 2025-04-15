@@ -1,0 +1,55 @@
+<!-- Hotel Details Section -->
+<mat-card class="hotel-container">
+  <mat-card-header>
+    <div mat-card-avatar class="hotel-avatar">
+      <mat-icon class="hotel-icon">hotel</mat-icon>
+    </div>
+    <mat-card-title>{{ hotel.name }}</mat-card-title>
+    <mat-card-subtitle>
+      <mat-icon class="icon">location_on</mat-icon> {{ hotel.location }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Hotel Banner Image -->
+    <img *ngIf="hotel.hotelImages?.length > 0" 
+    [src]="'http://localhost:8080/api/room-images/view/' + hotel.hotelImages[0].filePath.split('\\').pop()" 
+    alt="Hotel Image" 
+    class="hotel-image">
+
+
+    <!-- Hotel Rating -->
+    <p class="hotel-rating">
+      <mat-icon class="icon">star</mat-icon>
+      <mat-icon class="icon">star</mat-icon>
+      <mat-icon class="icon">star</mat-icon>
+      <mat-icon class="icon" *ngIf="hotel.rating >= 4">star</mat-icon>
+      <mat-icon class="icon" *ngIf="hotel.rating >= 5">star</mat-icon>
+      ({{ hotel.rating }} / 5)
+    </p>
+
+    <!-- Hotel Description -->
+    <p class="hotel-description">
+      <mat-icon class="icon">info</mat-icon> {{ hotel.description }}
+    </p>
+
+    <!-- Contact Information -->
+    <p class="hotel-contact">
+      <mat-icon class="icon">call</mat-icon> <a href="tel:{{ hotel.contact }}">{{ hotel.contact }}</a>
+    </p>
+
+    <!-- Email Information -->
+    <p class="hotel-email">
+      <mat-icon class="icon">email</mat-icon> <a href="mailto:{{ hotel.email }}">{{ hotel.email }}</a>
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" class="photo-btn" (click)="openRoomTypeDialog()">
+      <mat-icon>photo_camera</mat-icon> View Photos
+    </button>
+    <button mat-raised-button color="accent" (click)="bookNow(hotel)" class="book-btn">
+      <mat-icon>event</mat-icon> Book Now
+    </button>
+  </mat-card-actions>
+</mat-card>

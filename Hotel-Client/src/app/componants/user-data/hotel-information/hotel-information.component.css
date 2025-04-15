@@ -1,0 +1,50 @@
+/* Increase the height of room list items */
+.mat-mdc-list-item:not(.mat-mdc-list-item-interactive), 
+.mat-mdc-list-option:not(.mat-mdc-list-item-interactive) {
+    cursor: default;
+    min-height: 250px; /* Increased height */
+    display: flex;
+    align-items: center; /* Centers content properly */
+    padding: 20px;
+}
+
+/* Ensure the room card adapts properly */
+.room-card {
+    min-height: 200px; /* Adjust for full details */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+/* Prevents content overflow and overlapping */
+.mat-list-item {
+    overflow: hidden;
+    white-space: normal; /* Allows text wrapping */
+    word-wrap: break-word;
+}
+
+/* Ensure proper layout spacing */
+.mat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adds spacing between room items */
+}
+.available {
+    background-color: green !important;
+    color: white;
+  }
+  
+  .booked {
+    background-color: red !important;
+    color: white;
+  }
+  
+  .under-maintenance {
+    background-color: orange !important;
+    color: white;
+  }
+  
+
+

@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .room-card {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .section-title {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+  }
+  
+  .amenities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .success-msg,
+  .error-msg {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+  }
+  
+  .success-msg {
+    background-color: #e6f4ea;
+    color: #1b5e20;
+  }
+  
+  .error-msg {
+    background-color: #fdecea;
+    color: #b71c1c;
+  }
+  
+  .success-icon,
+  .error-icon {
+    margin-right: 5px;
+  }
+  

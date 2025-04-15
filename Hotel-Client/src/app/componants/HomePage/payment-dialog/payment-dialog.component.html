@@ -1,0 +1,38 @@
+<div class="payment-container">
+    <h2>Payment Details</h2>
+  
+    <form #paymentForm="ngForm" (ngSubmit)="processPayment()">
+      <label for="paymentMethod">Select Payment Method:</label>
+      <select id="paymentMethod" [(ngModel)]="paymentMethod" name="paymentMethod" required>
+        <option value="creditCard">Credit/Debit Card</option>
+        <option value="upi">UPI</option>
+        <option value="paypal">PayPal</option>
+      </select>
+  
+      <div *ngIf="paymentMethod === 'creditCard'">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" [(ngModel)]="cardNumber" name="cardNumber" required />
+  
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="month" id="expiryDate" [(ngModel)]="expiryDate" name="expiryDate" required />
+  
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" [(ngModel)]="cvv" name="cvv" required />
+      </div>
+  
+      <div *ngIf="paymentMethod === 'upi'">
+        <label for="upiId">UPI ID:</label>
+        <input type="text" id="upiId" [(ngModel)]="upiId" name="upiId" required />
+      </div>
+  
+      <div *ngIf="paymentMethod === 'paypal'">
+        <label for="paypalEmail">PayPal Email:</label>
+        <input type="email" id="paypalEmail" [(ngModel)]="paypalEmail" name="paypalEmail" required />
+      </div>
+  
+      <button type="submit" [disabled]="paymentForm.invalid">Pay Now</button>
+    </form>
+  
+    <button class="close-btn" (click)="closeDialog()">Cancel</button>
+  </div>
+  

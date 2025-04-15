@@ -1,0 +1,17 @@
+.booking-card {
+    max-height: 300px; /* Ensures the form has a maximum height */
+    overflow-y: auto;  /* Enables vertical scrolling */
+  }
+  
+  @media (max-width: 768px) {
+    .booking-card {
+      max-height: 200px; /* Adjust height for smaller screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .booking-card {
+      max-height: 150px; /* Further reduction for mobile screens */
+    }
+  }
+  

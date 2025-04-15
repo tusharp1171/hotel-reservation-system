@@ -1,0 +1,39 @@
+<div class="d-flex">
+    <!-- Sidebar Toggle Button (for Mobile) - Now on Right Side -->
+    <button class="menu-toggle-btn d-md-none" (click)="toggleSidebar()" *ngIf="!isSidebarOpen">
+      ☰ Menu
+    </button>
+  
+    <!-- Sidebar -->
+    <nav class="sidebar bg-white text-dark vh-100 p-3" [ngClass]="{'active': isSidebarOpen}">
+      <!-- Close Button (inside the sidebar, right side) -->
+      <button class="btn btn-light d-md-none close-btn" (click)="toggleSidebar()">✖</button>
+  
+      <h4 class="text-center">Menu</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link text-dark" routerLink="/user/addhotel" (click)="closeSidebar()">Add Hotel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" routerLink="/user/hotelinformation" (click)="closeSidebar()">Information</a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" routerLink="/profile" (click)="closeSidebar()">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" routerLink="/settings" (click)="closeSidebar()">Settings</a>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-danger mt-3 w-100" (click)="logout()">Logout</button>
+          </li>
+      </ul>
+    </nav>
+  
+    <!-- Main Content -->
+    <div class="content p-3 flex-grow-1">
+
+         
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+  
