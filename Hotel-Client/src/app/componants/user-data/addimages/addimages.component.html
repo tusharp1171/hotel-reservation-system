@@ -1,0 +1,43 @@
+<div class="container">
+    <h2 class="title">Hotel & Room Images</h2>
+
+    <button mat-raised-button color="accent" (click)="toggleUploadSection()">
+        <mat-icon>add</mat-icon> Upload Images
+    </button>
+
+    <div *ngIf="showUploadSection" class="upload-section">
+        <h3>Upload Hotel Image</h3>
+        <label class="custom-file-upload">
+            <input type="file" (change)="onHotelFileSelected($event)" />
+            <mat-icon>cloud_upload</mat-icon> Choose Image
+        </label>
+        <button mat-raised-button color="primary" (click)="uploadHotelImage()">Upload</button>
+
+        <h3>Upload Room Image</h3>
+        <label class="custom-file-upload">
+            <input type="file" (change)="onRoomFileSelected($event)" />
+            <mat-icon>cloud_upload</mat-icon> Choose Image
+        </label>
+        <button mat-raised-button color="primary" (click)="uploadRoomImage()">Upload</button>
+    </div>
+
+    <h3>Hotel Images</h3>
+    <div class="image-gallery">
+        <mat-card *ngFor="let image of hotelImages">
+            <img [src]="image.imageUrl" class="hotel-img" />
+            <button mat-icon-button color="warn" (click)="deleteHotelImage(image.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card>
+    </div>
+
+    <h3>Room Images</h3>
+    <div class="image-gallery">
+        <mat-card *ngFor="let image of roomImages">
+            <img [src]="image.imageUrl" class="hotel-img" />
+            <button mat-icon-button color="warn" (click)="deleteRoomImage(image.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card>
+    </div>
+</div>

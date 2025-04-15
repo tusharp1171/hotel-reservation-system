@@ -1,0 +1,47 @@
+body {
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 15px;
+  }
+  
+  input.form-control {
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .login-btn {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border: none;
+    transition: 0.3s;
+  }
+  
+  .login-btn:hover {
+    background: linear-gradient(45deg, #0056b3, #003b7f);
+  }
+  
+  .signup-btn {
+    background: linear-gradient(45deg, #28a745, #1d7d32);
+    border: none;
+    transition: 0.3s;
+  }
+  
+  .signup-btn:hover {
+    background: linear-gradient(45deg, #1d7d32, #145d25);
+  }
+  
+  .toggle a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .toggle a:hover {
+    text-decoration: underline;
+  }
+  
+  small.text-danger {
+    font-size: 12px;
+  }
+  

@@ -1,0 +1,112 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-primary fw-bold">🏨 Hotel Information</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger text-center">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Hotels List -->
+    <mat-accordion *ngIf="hotels.length > 0; else noHotels">
+        <mat-expansion-panel *ngFor="let hotel of hotels">
+            <mat-expansion-panel-header>
+                <mat-card-title>
+                    <mat-icon class="text-primary">apartment</mat-icon> {{ hotel.name }}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <mat-icon class="text-danger">location_on</mat-icon> {{ hotel.location }}
+                </mat-card-subtitle>
+            </mat-expansion-panel-header>
+
+            <mat-card class="mt-3 p-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="mt-2">
+                        <strong>Rating:</strong>
+                        <span class="text-warning fs-5">
+                            <mat-icon class="text-warning">star</mat-icon> {{ hotel.rating }}
+                        </span>
+                    </p>
+                    <button mat-raised-button color="primary" (click)="fetchRoomStatus(hotel.id!)">
+                        <mat-icon>visibility</mat-icon> View Room Status
+                    </button>
+                </div>
+            </mat-card>
+
+            <!-- Room Status Buttons -->
+            <div *ngIf="roomStatus[hotel.id!]" class="mt-3">
+                <h5 class="text-dark fw-bold">Room Categories</h5>
+                <div class="d-flex gap-2 flex-wrap">
+                    <button mat-raised-button *ngFor="let roomType of getRoomTypes(hotel.id!)"
+                        
+                        (click)="toggleRoomType(hotel.id!, roomType)">
+                        {{ roomType }} ({{ getTotalRooms(hotel.id!, roomType) }})
+                    </button>
+                </div>
+            </div>
+
+
+
+
+            <div *ngIf="selectedCategoryMap[hotel.id!]" class="room-container mt-4">
+                <div class="room-type-card p-4 border rounded shadow-sm">
+                    <h2 class="text-primary mb-3">
+                        {{ selectedCategoryMap[hotel.id!] }} 
+                        <span class="badge bg-secondary ms-2">
+                            Total: {{ getTotalRooms(hotel.id!, selectedCategoryMap[hotel.id!] || '') }}
+                        </span>
+                    </h2>
+            
+                    <div class="status-container d-flex flex-wrap gap-3">
+                        <ng-container *ngIf="hotel.id !== undefined && selectedCategoryMap[hotel.id] !== undefined">
+                            <div *ngFor="let status of getStatuses(hotel.id!, selectedCategoryMap[hotel.id] || '')"
+                                class="status-box p-3 rounded shadow-sm text-dark text-center border"
+                                [ngClass]="{
+                                    'border-success': status === 'AVAILABLE',
+                                    'border-warning': status === 'UNDER_MAINTENANCE',
+                                    'border-danger': status === 'BOOKED',
+                                    
+                                }">
+                                
+                                <h4 class=""
+                        [ngClass]="{
+                            'text-success': status === 'AVAILABLE',
+                            'text-warning': status === 'UNDER_MAINTENANCE',
+                            'text-danger': status === 'BOOKED',
+                           
+                        }">
+                        {{ status }}
+                    </h4>
+            
+                                <div class="room-numbers d-flex flex-wrap gap-2 mt-2">
+                                    <ng-container *ngIf="roomStatus?.[hotel.id!]?.[selectedCategoryMap[hotel.id] || '']?.[status]">
+                                        <div *ngFor="let room of roomStatus[hotel.id!][selectedCategoryMap[hotel.id] || ''][status]"
+                                            class="room-number border p-2 rounded fw-bold shadow-sm"
+                                            [ngClass]="{
+                                                'text-success border-success': status === 'AVAILABLE',
+                                                'text-warning border-warning': status === 'UNDER_MAINTENANCE',
+                                                'text-danger border-danger': status === 'BOOKED',
+
+                                            }">
+                                            {{ room }}
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- No Hotels Message -->
+    <ng-template #noHotels>
+        <div class="text-center text-muted mt-4">
+            <mat-icon class="fs-1">hotel</mat-icon>
+            <p>No hotels available.</p>
+        </div>
+    </ng-template>
+</div>

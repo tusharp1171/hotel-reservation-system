@@ -1,0 +1,30 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%; border-radius: 10px;">
+        <div class="card-body">
+            <h3 class="text-center mb-4 text-primary fw-bold">Add Hotel</h3>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Hotel Name</label>
+                <input type="text" placeholder="Enter hotel name" [(ngModel)]="hotel.name" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Location</label>
+                <input type="text" placeholder="Enter location" [(ngModel)]="hotel.location" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Rating</label>
+                <input type="number" placeholder="Enter rating (1-5)" [(ngModel)]="hotel.rating" class="form-control">
+            </div>
+
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg" (click)="addHotel()">
+                    <i class="fas fa-plus-circle"></i> Add Hotel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Font Awesome for icons -->

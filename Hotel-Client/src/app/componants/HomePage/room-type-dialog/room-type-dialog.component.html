@@ -1,0 +1,50 @@
+<div class="container-fluid dialog-container">
+    <h2 class="dialog-title text-center">🏨 Select Your Room</h2>
+  
+    <!-- Room Type Selection Buttons -->
+    <div class="d-flex flex-wrap justify-content-center mb-4">
+      <button 
+        *ngFor="let type of roomTypes" 
+        class="btn room-type-btn"
+        [ngClass]="{ 'active': selectedRoomType === type }"
+        (click)="filterImagesByRoomType(type)">
+        {{ type }}
+      </button>
+    </div>
+  
+    <!-- Image Slider -->
+    <div *ngIf="filteredImages.length > 0; else noImages">
+      <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item" 
+               *ngFor="let image of filteredImages; let i = index" 
+               [ngClass]="{'active': i === 0}">
+            <img class="d-block w-100 room-img" [src]="image.imageUrl" [alt]="selectedRoomType">
+          </div>
+        </div>
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#roomCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  
+    <!-- No Images Available Message -->
+    <ng-template #noImages>
+      <div class="text-center no-images-message">
+        <i class="fas fa-image no-img-icon"></i>
+        <p>No images available for this room type.</p>
+      </div>
+    </ng-template>
+  
+    <!-- Close Button -->
+    <div class="text-center mt-4">
+      <button class="btn close-btn" (click)="closeDialog()">
+        <i class="fas fa-times"></i> Close
+      </button>
+    </div>
+  </div>
+  

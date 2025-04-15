@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let hotel of hotels">
+            <mat-card class="hotel-card shadow-lg border-0 rounded-4 overflow-hidden">
+                <!-- 🏨 Hotel Images Carousel -->
+                <div [id]="'carousel' + hotel.id" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div *ngFor="let image of hotel.hotelImages; let i = index" class="carousel-item"
+                            [class.active]="i === 0">
+                            <img [src]="image.imageUrl || 'http://localhost:8080/view/' + image" 
+                                class="d-block w-100 rounded-top" 
+                                alt="Hotel Image">
+                        </div>
+                    </div>
+                    <!-- ◀ Carousel Controls ▶ -->
+                   
+                </div>
+
+                <!-- 📍 Hotel Details -->
+                <div class="p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold text-primary m-0">{{ hotel.name }}</h5>
+                        <div>
+                            <span *ngFor="let star of [1,2,3,4,5]">
+                                <i class="bi"
+                                   [ngClass]="{'bi-star-fill text-warning': hotel.rating >= star, 'bi-star text-muted': hotel.rating < star}"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 🏷 Price & 📌 Location -->
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <p class="mb-0 text-muted"><i class="bi bi-geo-alt-fill text-danger"></i> {{ hotel.location }}</p>
+                        <span *ngIf="hotel.standardRoomPrice !== null && hotel.standardRoomPrice !== undefined">
+                            <span class="fw-bold text-danger text-decoration-line-through">
+                              ${{ hotel.standardRoomPrice | number }}
+                            </span>
+                            <span class="fw-bold text-success ms-2">
+                              ${{ hotel.standardRoomPrice - 100 | number }}
+                            </span>
+                          </span>
+                          
+                    </div>
+                </div>
+
+                <!-- 🎟 Action Buttons -->
+                <mat-card-actions class="d-flex justify-content-between px-3 pb-3">
+                    <button mat-raised-button color="primary" class="fw-bold px-3 py-2 rounded-pill shadow-sm btn-hover-effect"
+                        (click)="bookNow(hotel)">
+                        <i class="bi bi-calendar-check"></i> Book Now
+                    </button>
+                    <button mat-raised-button color="warn" class="fw-bold px-3 py-2 rounded-pill shadow-sm btn-hover-effect"
+                        (click)="viewDetails(hotel)">
+                        <i class="bi bi-info-circle"></i> View Details
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

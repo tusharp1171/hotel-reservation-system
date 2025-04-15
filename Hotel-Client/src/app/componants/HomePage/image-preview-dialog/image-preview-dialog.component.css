@@ -1,0 +1,19 @@
+.image-preview-container {
+    position: relative;
+    text-align: center;
+  }
+  
+  .full-image {
+    width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+  }
+  

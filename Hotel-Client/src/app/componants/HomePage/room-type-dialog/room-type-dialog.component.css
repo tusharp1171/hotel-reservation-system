@@ -1,0 +1,79 @@
+/* Container */
+.dialog-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .dialog-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+  /* Room Type Buttons */
+  .room-type-btn {
+    padding: 12px 20px;
+    border-radius: 25px;
+    margin: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #ff4b2b;
+    background: transparent;
+    color: #ff4b2b;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .room-type-btn:hover, 
+  .room-type-btn.active {
+    background: #ff4b2b;
+    color: white;
+  }
+  
+  /* Carousel */
+  .carousel {
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .carousel-inner img {
+    height: 350px;
+    object-fit: cover;
+  }
+  
+  /* No Images Message */
+  .no-images-message {
+    color: #7f8c8d;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .no-img-icon {
+    font-size: 50px;
+    color: #bdc3c7;
+  }
+  
+  /* Close Button */
+  .close-btn {
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    background: #ff4b2b;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .close-btn:hover {
+    background: #c70039;
+    transform: scale(1.05);
+  }
+  

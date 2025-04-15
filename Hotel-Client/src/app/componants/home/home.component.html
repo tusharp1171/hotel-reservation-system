@@ -1,0 +1,36 @@
+<div class="container-fluid d-flex flex-column vh-100">
+  <!-- 🔹 Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="logo">
+      <img src="../../assets/hotel-logo.jpg" alt="Logo">
+    </div>
+
+    <div class="search-container">
+      <input type="text" class="search-bar" placeholder="🔍 Search here...">
+    </div>
+
+    <button class="menu-toggle-btn d-md-none" (click)="toggleSidebar()">☰</button>
+  </nav>
+
+  <div class="d-flex flex-grow-1">
+    <!-- 🔹 Sidebar -->
+    <nav class="sidebar" [ngClass]="{'active': isSidebarOpen}">
+      <button class="btn close-btn d-md-none" (click)="toggleSidebar()">✖</button>
+
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" routerLink="/user/addhotel" (click)="closeSidebar()">🏨 Add Hotel</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/user/hotelinformation" (click)="closeSidebar()">📄 Information</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/profile" (click)="closeSidebar()">👤 Profile</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/settings" (click)="closeSidebar()">⚙ Settings</a></li>
+        <li class="nav-item">
+          <button class="btn btn-danger logout-btn" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 🔹 Main Content -->
+    <div class="content p-3 flex-grow-1">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
